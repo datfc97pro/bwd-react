@@ -112,7 +112,7 @@ class Profile extends Component {
           </div>
           <div className="col-sm-4 revenue">
             {user.revenue && (
-              <h1>Revenue: {parseInt(user.revenue, 10) / 100}</h1>
+              <h1>Revenue: {parseInt(user.revenue, 10) / 100}$</h1>
             )}
           </div>
         </div>

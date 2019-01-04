@@ -88,6 +88,12 @@ class BookingManage extends Component {
 
         <h1 className="page-title">My Pending Bookings</h1>
         <div className="row">{this.renderPayments(payments)}</div>
+
+        {!isFetching && payments.length === 0 && (
+          <div className="alert alert-warning">
+            You have no pending bookings curently!
+          </div>
+        )}
       </section>
     );
   }
