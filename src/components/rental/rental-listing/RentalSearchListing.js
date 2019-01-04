@@ -1,14 +1,15 @@
 import React from "react";
-import { RentalList } from "./RentalList";
+import RentalList from "./RentalList";
 import { connect } from "react-redux";
 
 import { toUpperCase } from "helpers";
 import * as actions from "actions";
+import Spinner from "../../shared/Spinner";
 
 class RentalSearchListing extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       searchedCity: ""
     };
@@ -51,6 +52,13 @@ class RentalSearchListing extends React.Component {
   }
 
   render() {
+    if (
+      this.props.rentals.data.length === 0 &&
+      this.props.rentals.errors.length === 0
+    ) {
+      return <Spinner />;
+    }
+
     return (
       <section id="rentalListing">
         {this.renderTitle()}

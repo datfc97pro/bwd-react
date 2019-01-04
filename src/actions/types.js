@@ -20,3 +20,9 @@ export const LOGOUT = "LOGOUT";
 
 export const RELOAD_MAP = "RELOAD_MAP";
 export const RELOAD_MAP_FINISH = "RELOAD_MAP_FINISH";
+
+export const PAYMENT_TOKEN = "PAYMENT_TOKEN";
+export const GET_PAYMENTS = "GET_PAYMENTS";
+
+export const GET_PROFILE = "GET_PROFILE";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";

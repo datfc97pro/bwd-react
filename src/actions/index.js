@@ -18,7 +18,11 @@ import {
   UPDATE_RENTAL_FAIL,
   RESET_RENTAL_ERRORS,
   RELOAD_MAP,
-  RELOAD_MAP_FINISH
+  RELOAD_MAP_FINISH,
+  PAYMENT_TOKEN,
+  GET_PAYMENTS,
+  GET_PROFILE,
+  UPDATE_PROFILE
 } from "./types";
 
 const axiosInstance = axiosService.getInstance();
@@ -263,4 +267,59 @@ export const uploadImage = image => {
       return json.data.imageUrl;
     })
     .catch(({ response }) => Promise.reject(response.data.errors[0]));
+};
+
+export const getPaymentToken = token => {
+  return {
+    type: PAYMENT_TOKEN,
+    token: token
+  };
+};
+
+const getPayments = payments => {
+  return {
+    type: GET_PAYMENTS,
+    payments: payments
+  };
+};
+
+export const getPendingPayments = () => dispatch => {
+  axiosInstance
+    .get("/payments")
+    .then(res => dispatch(getPayments(res.data)))
+    .catch(err => {});
+};
+
+export const acceptPayment = payment => {
+  return axiosInstance.post("/payments/accept", payment);
+};
+
+export const declinePayment = payment => {
+  return axiosInstance.post("/payments/decline", payment);
+};
+
+const getPROFILE = userData => {
+  return {
+    type: GET_PROFILE,
+    user: userData
+  };
+};
+
+export const getProfile = userId => dispatch => {
+  axiosInstance
+    .get(`/users/${userId}`)
+    .then(res => dispatch(getPROFILE(res.data)));
+};
+
+const updatePROFILE = userData => {
+  return {
+    type: UPDATE_PROFILE,
+    userUpdate: userData
+  };
+};
+
+export const updateProfile = userData => dispatch => {
+  return axiosInstance
+    .put("/users", userData)
+    .then(user => dispatch(updatePROFILE(user.data)));
 };

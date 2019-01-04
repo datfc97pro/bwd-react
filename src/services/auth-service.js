@@ -13,7 +13,8 @@ class AuthService {
   }
 
   saveToken(token) {
-    localStorage.setItem(this.tokenKey, token);
+    const tokenSplit = token.split(" ")[1];
+    localStorage.setItem(this.tokenKey, tokenSplit);
   }
 
   invalidateUser() {
@@ -24,6 +25,10 @@ class AuthService {
     const exp = this.decode(token).exp;
 
     return moment.unix(exp);
+  }
+
+  getUserId() {
+    return this.decode(this.getToken()).userId;
   }
 
   getUsername() {
