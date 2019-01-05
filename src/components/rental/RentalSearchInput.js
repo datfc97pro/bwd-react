@@ -25,7 +25,7 @@ class RentalSearchInput extends Component {
 
   render() {
     return (
-      <div className="form-inline my-2 my-lg-0">
+      <div className="form-inline my-2 my-lg-0 d-none d-md-block">
         <input
           onKeyPress={event => {
             this.handleKeyPress(event);
