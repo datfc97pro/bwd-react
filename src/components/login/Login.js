@@ -16,11 +16,6 @@ class Login extends Component {
   componentWillMount() {
     const query = queryString.parse(this.props.location.search);
 
-    if (query.loginGoogle) {
-      authService.saveToken(query.loginGoogle);
-      window.location.reload();
-    }
-
     if (query.register === "true") {
       toast("🦄 Register Success", {
         position: "top-right",
@@ -30,6 +25,15 @@ class Login extends Component {
         pauseOnHover: true,
         draggable: true
       });
+    }
+  }
+
+  componentDidMount() {
+    const query = queryString.parse(this.props.location.search);
+
+    if (query.loginGoogle) {
+      authService.saveToken(query.loginGoogle);
+      window.location.reload();
     }
   }
 
